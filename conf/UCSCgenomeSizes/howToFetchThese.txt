@@ -1,0 +1,3 @@
+module load ucsctools
+fetchChromSizes mm9 > mm9.chrom.sizes
+fetchChromSizes mm10 > mm10.chrom.sizes
