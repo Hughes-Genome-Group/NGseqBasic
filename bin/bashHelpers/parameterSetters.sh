@@ -53,7 +53,7 @@ then
     printToLogFile
   exit 1
 else
-    otherBowtie1Parameters="${otherBowtie1Parameters} ${bowtie1MismatchBehavior} ${LOWERCASE_V}"
+    otherBowtie1Parameters="${otherBowtie1Parameters} ${bowtie1MismatchBehavior} -v ${LOWERCASE_V}"
 fi
 
 otherBowtie2Parameters="${otherBowtie2Parameters} ${bowtie2MismatchBehavior}"

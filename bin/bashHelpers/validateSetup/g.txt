@@ -49,6 +49,8 @@ supportedGenomes[5]="danRer7"
 supportedGenomes[6]="danRer10"
 supportedGenomes[7]="galGal4"
 supportedGenomes[8]="dm3"
+supportedGenomes[9]="dm6"
+supportedGenomes[10]="mm10balb"
 
 # The above genomes should have :
 # 1) bowtie1 indices
@@ -90,6 +92,9 @@ BOWTIE1[5]="/databank/igenomes/Danio_rerio/UCSC/danRer7/Sequence/BowtieIndex/gen
 BOWTIE1[6]="/databank/igenomes/Danio_rerio/UCSC/danRer10/Sequence/BowtieIndex/genome"
 BOWTIE1[7]="/databank/igenomes/Gallus_gallus/UCSC/galGal4/Sequence/BowtieIndex/genome"
 BOWTIE1[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/BowtieIndex/genome"
+BOWTIE1[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/BowtieIndex/genome"
+BOWTIE1[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie1-indexes/mm10_BALB-cJ"
+
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -97,10 +102,6 @@ BOWTIE1[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/BowtieI
 # The pipeline checks that at least one index file exists, before proceeding with the analysis.
 
 # When adding new genomes : remember to update the "supportedGenomes" list above as well !
-
-# To add NEW genomes (in addition to above) to the list - modify also the subroutine
-# setBOWTIEgenomeSizes() in the main script NGseqBasic.sh
-
 
 
 # #############################################################################
@@ -135,6 +136,8 @@ BOWTIE2[5]="/databank/igenomes/Danio_rerio/UCSC/danRer7/Sequence/Bowtie2Index/ge
 BOWTIE2[6]="/databank/igenomes/Danio_rerio/UCSC/danRer10/Sequence/Bowtie2Index/genome"
 BOWTIE2[7]="/databank/igenomes/Gallus_gallus/UCSC/galGal4/Sequence/Bowtie2Index/genome"
 BOWTIE2[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/Bowtie2Index/genome"
+BOWTIE2[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/Bowtie2Index/genome"
+BOWTIE2[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie2-indexes/mm10_BALB-cJ"
 
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
@@ -167,6 +170,8 @@ UCSC[5]="${confFolder}/UCSCgenomeSizes/danRer7.chrom.sizes"
 UCSC[6]="${confFolder}/UCSCgenomeSizes/danRer10.chrom.sizes"
 UCSC[7]="${confFolder}/UCSCgenomeSizes/galGal4.chrom.sizes"
 UCSC[8]="${confFolder}/UCSCgenomeSizes/dm3.chrom.sizes"
+UCSC[9]="${confFolder}/UCSCgenomeSizes/dm6.chrom.sizes"
+UCSC[10]="${confFolder}/UCSCgenomeSizes/mm10.chrom.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
@@ -216,6 +221,8 @@ genomesWhichHaveBlacklist[0]="mm9"
 genomesWhichHaveBlacklist[1]="mm10"
 genomesWhichHaveBlacklist[2]="hg18"
 genomesWhichHaveBlacklist[3]="hg19"
+genomesWhichHaveBlacklist[4]="mm10balb"
+
 # - i.e. : not all genomes have to have a blacklist.
 # If the genome is not listed here, blacklist filtering is NOT conducted within the pipeline (turned off automatically).
 # It is HIGHLY RECOMMENDED to generate intra-house peak call for ALL GENOMES - from a control (sonication etc) data , however !
@@ -224,6 +231,7 @@ BLACKLIST[0]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[1]="${confFolder}/BLACKLIST/mm10.bed"
 BLACKLIST[2]="${confFolder}/BLACKLIST/hg18.bed"
 BLACKLIST[3]="${confFolder}/BLACKLIST/hg19.bed"
+BLACKLIST[4]="${confFolder}/BLACKLIST/mm10.bed"
 
 # The indices in the BLACKLIST array refer to genome names in genomesWhichHaveBlacklist array.
 

@@ -109,16 +109,16 @@ else
 # Note !!!!!
 # - the script does not check already existing conflicting programs within $PATH (which may contain executable with same names as these)
 
-export PATH=$PATH:/usr/local/pkgbin/samtools/0.1.19
-export PATH=$PATH:/usr/local/pkgbin/bowtie/1.0.0
-export PATH=$PATH:/usr/local/pkgbin/bowtie2/2.1.0
-export PATH=$PATH:/usr/local/pkgbin/bedtools/2.17.0
-export PATH=$PATH:/usr/local/pkgbin/ucsctools/1.0
-export PATH=$PATH:/usr/local/pkgbin/flash/1.2.8
-export PATH=$PATH:/usr/local/pkgbin/fastqc/0.11.4
-export PATH=$PATH:/usr/local/pkgbin/trim_galore/0.3.1
-export PATH=$PATH:/usr/local/pkgbin/cutadapt/1.2.1
-export PATH=$PATH:/usr/local/pkgbin/perl/5.18.1
+export PATH=$PATH:/usr/local/pkgbin/samtools/0.1.19/bin
+export PATH=$PATH:/usr/local/pkgbin/bowtie/1.0.0/bin
+export PATH=$PATH:/usr/local/pkgbin/bowtie2/2.1.0/bin
+export PATH=$PATH:/usr/local/pkgbin/bedtools/2.17.0/bin
+export PATH=$PATH:/usr/local/pkgbin/ucsctools/1.0/bin
+export PATH=$PATH:/usr/local/pkgbin/flash/1.2.8/bin
+export PATH=$PATH:/usr/local/pkgbin/fastqc/0.11.4/bin
+export PATH=$PATH:/usr/local/pkgbin/trim_galore/0.3.1/bin
+export PATH=$PATH:/usr/local/pkgbin/cutadapt/1.2.1/bin
+export PATH=$PATH:/usr/local/pkgbin/perl/5.18.1/bin
 
 # See notes of SUPPORTED VERSIONS above !
 

@@ -103,10 +103,6 @@ BOWTIE1[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie1-
 
 # When adding new genomes : remember to update the "supportedGenomes" list above as well !
 
-# To add NEW genomes (in addition to above) to the list - modify also the subroutine
-# setBOWTIEgenomeSizes() in the genomeSetters.sh
-
-
 
 # #############################################################################
 # BOWTIE 2 INDICES
