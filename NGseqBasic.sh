@@ -492,7 +492,7 @@ BOWTIEMEMORY=256
 BOWTIE_PROCESSORS=3
 otherBowtie1Parameters=""
 otherBowtie2Parameters=""
-LOWERCASE_V=""
+LOWERCASE_V=-1
 bowtie1MismatchBehavior=""
 bowtie2MismatchBehavior=""
 PLOIDYFILTER=1
@@ -651,7 +651,7 @@ while true ; do
         -m) LOWERCASE_M=$2 ; shift 2;;
         -M) CAPITAL_M=$2 ; shift 2;;
         -p) BOWTIE_PROCESSORS=$2 ; shift 2;;
-        -v) LOWERCASE_V="$2"; shift 2;;
+        -v) LOWERCASE_V=$2; shift 2;;
         --help) usage ; shift;;
         --test) echo "TEST RUN - PYRAMID DEVELOPMENT !"; shift;;
         --veryOldChIP) echo "Pyramid run for ANCIENT data - no knowledge of antibody supplier or batch id."; shift;;
