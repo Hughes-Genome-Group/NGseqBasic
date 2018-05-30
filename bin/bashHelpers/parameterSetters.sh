@@ -39,15 +39,16 @@ setParameters(){
 # Listing current limitations, exiting if needed :
 
 if [ "${LOWERCASE_M}" -ne 0 ] && [ "${CAPITAL_M}" -ne 0 ];
-then
+then 
     printThis="Bowth -m and -M parameters cannot be set at the same time\nEXITING"
     printToLogFile
-  exit 1
+   exit 1
 fi
 
 #----------------------------------------------
 
 if [ "${LOWERCASE_V}" -ne -1 ] && [ "${bowtie1MismatchBehavior}" != "" ]
+then
     printThis="Bowtie1 does not allow setting -v with any other mismatch-reporting altering parameters ( --seedmms --seedlen --maqerr ) \nUse only -v, or (any) combination of --seedmms --seedlen --maqerr\nEXITING"
     printToLogFile
   exit 1
