@@ -36,11 +36,11 @@ version(){
 usage(){
     
     version
-    echo -e versionInfo
+    echo -e ${versionInfo}
     rm -f versionInfoHTML.txt
     rm -f versionInfo.txt
 
-echo "FOR PAIRED END SEQUENCING DATA"
+echo "FOR ATAC/DNASE/CHIP SEQUENCING DATA"
 echo
 echo "[1](bam-to-fastq) --> [1b] fastqc --> (trimming, fastqc again) --> bowtie --> bowtie_out.bam, filtered.bam (no blacklisted*, no dupl, proper pairs) --> bedgraph, bigwig --> [2](data hub)"
 echo "Data can enter as bam [1], and/or as fastq [1b]. Step [2] is optional."

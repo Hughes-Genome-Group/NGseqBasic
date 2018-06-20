@@ -94,7 +94,7 @@ BOWTIE1[7]="/databank/igenomes/Gallus_gallus/UCSC/galGal4/Sequence/BowtieIndex/g
 BOWTIE1[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/BowtieIndex/genome"
 BOWTIE1[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/BowtieIndex/genome"
 BOWTIE1[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie1-indexes/mm10_BALB-cJ"
-
+BOWTIE1[11]="/databank/igenomes/Saccharomyces_cerevisiae/UCSC/sacCer3/Sequence/BowtieIndex/genome"
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -138,6 +138,7 @@ BOWTIE2[7]="/databank/igenomes/Gallus_gallus/UCSC/galGal4/Sequence/Bowtie2Index/
 BOWTIE2[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/Bowtie2Index/genome"
 BOWTIE2[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/Bowtie2Index/genome"
 BOWTIE2[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie2-indexes/mm10_BALB-cJ"
+BOWTIE2[11]="/databank/igenomes/Saccharomyces_cerevisiae/UCSC/sacCer3/Sequence/Bowtie2Index/genome"
 
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
@@ -172,6 +173,7 @@ UCSC[7]="${confFolder}/UCSCgenomeSizes/galGal4.chrom.sizes"
 UCSC[8]="${confFolder}/UCSCgenomeSizes/dm3.chrom.sizes"
 UCSC[9]="${confFolder}/UCSCgenomeSizes/dm6.chrom.sizes"
 UCSC[10]="${confFolder}/UCSCgenomeSizes/mm10.chrom.sizes"
+UCSC[11]="${confFolder}/UCSCgenomeSizes/sacCer3.chrom.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 

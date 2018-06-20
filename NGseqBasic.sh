@@ -526,27 +526,7 @@ dirForQuotaAsking=$( pwd )
 
 #------------------------------------------
 
-echo "NGseqBasic.sh - by Jelena Telenius, 03/11/2016"
-echo
-timepoint=$( date )
-echo "run started : ${timepoint}"
-echo
-echo "Script located at"
-which $0
-echo
-
-echo "RUNNING IN MACHINE : "
-hostname --long
-
-echo "run called with parameters :"
-echo "NGseqBasic.sh" $@
-echo
-
-#------------------------------------------
-
 # Loading subroutines in ..
-
-echo "Loading subroutines in .."
 
 PipeTopPath="$( which $0 | sed 's/\/NGseqBasic.sh$//' )"
 
@@ -594,19 +574,7 @@ confFolder="${PipeTopPath}/conf"
 
 #------------------------------------------
 
-echo
-echo "PipeTopPath ${PipeTopPath}"
-echo "PipePath ${PipePath}"
-echo "confFolder ${confFolder}"
-echo "BashHelpersPath ${BashHelpersPath}"
-echo "PerlHelpersPath ${PerlHelpersPath}"
-echo
-
-#------------------------------------------
-
 # Calling in the CONFIGURATION script and its default setup :
-
-echo "Calling in the conf/*.sh scripts and their default setup .."
 
 supportedGenomes=()
 BOWTIE1=()
@@ -621,18 +589,6 @@ BLACKLIST=()
 
 setGenomeLocations
 setPublicLocations
-
-echo 
-echo "Supported genomes : "
-for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do echo -n "${supportedGenomes[$g]} "; done
-echo 
-echo
-
-echo 
-echo "Blacklist filtering available for these genomes : "
-for g in $( seq 0 $((${#genomesWhichHaveBlacklist[@]}-1)) ); do echo -n "${genomesWhichHaveBlacklist[$g]} "; done
-echo 
-echo 
 
 #------------------------------------------
 
@@ -712,6 +668,50 @@ while true ; do
         --) shift; break;;
     esac
 done
+
+#------------------------------------------
+
+echo "NGseqBasic.sh - by Jelena Telenius, 03/11/2016"
+echo
+timepoint=$( date )
+echo "run started : ${timepoint}"
+echo
+echo "Script located at"
+which $0
+echo
+
+echo "RUNNING IN MACHINE : "
+hostname --long
+
+echo "run called with parameters :"
+echo "NGseqBasic.sh" $@
+echo
+
+#------------------------------------------
+
+echo
+echo "PipeTopPath ${PipeTopPath}"
+echo "PipePath ${PipePath}"
+echo "confFolder ${confFolder}"
+echo "BashHelpersPath ${BashHelpersPath}"
+echo "PerlHelpersPath ${PerlHelpersPath}"
+echo
+
+# ------------------------------------------
+
+echo 
+echo "Supported genomes : "
+for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do echo -n "${supportedGenomes[$g]} "; done
+echo 
+echo
+
+echo 
+echo "Blacklist filtering available for these genomes : "
+for g in $( seq 0 $((${#genomesWhichHaveBlacklist[@]}-1)) ); do echo -n "${genomesWhichHaveBlacklist[$g]} "; done
+echo 
+echo 
+
+#------------------------------------------
 
 # #####################################################
 # 
