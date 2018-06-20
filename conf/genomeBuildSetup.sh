@@ -51,6 +51,7 @@ supportedGenomes[7]="galGal4"
 supportedGenomes[8]="dm3"
 supportedGenomes[9]="dm6"
 supportedGenomes[10]="mm10balb"
+supportedGenomes[11]="sacCer3"
 
 # The above genomes should have :
 # 1) bowtie1 indices
