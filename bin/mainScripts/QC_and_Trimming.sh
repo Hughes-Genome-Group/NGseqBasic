@@ -365,8 +365,8 @@ if [ ! -s ${READ1}_val_1.fq ]; then
 fi
 
 if [ "${singleEnd}" -eq 0 ] ; then
-if [ ! -s ${READ1}_val_2.fq ]; then
-    printThis="Trimming failed : Trimgalore output file ${READ1}_val_2.fq is empty ! \n EXITING !! "
+if [ ! -s ${READ2}_val_2.fq ]; then
+    printThis="Trimming failed : Trimgalore output file ${READ2}_val_2.fq is empty ! \n EXITING !! "
     printToLogFile
     exit 1    
 fi    
@@ -436,7 +436,6 @@ if [ "${singleEnd}" -eq 0 ] ; then
     printThis="READ 2"
     printToTrimmingLogFile
     cutadapt -O "${S}" "--quality-base=${QUAL}" -q "${qualFilter}" -m 0 -g "${A1}" "${READ2}.fastq" -o TEMP_R2_trimmed.fastq >> "read_trimming.log"
-    
     printThis="Running trim_galore in 'non-trimming mode' to eliminate too short read pairs, excludes both reads in pair if EITHER of them end up shorter than ${L}bp"
     printToTrimmingLogFile   
  
