@@ -413,13 +413,14 @@ echo "ONLYHUB ${ONLYHUB}"
 echo "BLACKLISTFILTERED ${PLOIDYFILTERED}"
 echo "SYMBOLICLINKS ${SYMBOLICLINKS}"
 echo "ORANGEBLUE ${ORANGEBLUE}"
+echo "REDGREEN ${REDGREEN} ( old default colors : very colorblind-unfriendly )"
 echo
 
 # Setting track colors : normal or redgreen blindness ?
 
-# RED GREEN (default)
-redcolor="255,0,0"
-greencolor="0,200,0"
+# PINK GREEN (default)
+redcolor="255,74,179"
+greencolor="62,176,145"
 
 # ORANGE BLUE (redgreen blindness colors)
 
@@ -430,6 +431,14 @@ greencolor="0,0,153"
 
 fi
 
+# RED GREEN (old default - very redgreen blindness-unfriendly colors)
+
+if [ "${REDGREEN}" -eq 1 ];then
+    
+redcolor="255,0,0"
+greencolor="0,200,0"
+
+fi
 
 #########################################################
 # MODULE 0.1) setting paths , setting timestamp

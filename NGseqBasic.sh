@@ -502,6 +502,7 @@ GZIP=0
 TRIM5=0
 NEXTERA=0
 ORANGEBLUE=0
+REDGREEN=0
 
 PYRAMIDRERUN=0
 
@@ -593,7 +594,7 @@ setPublicLocations
 #------------------------------------------
 
 
-OPTS=`getopt -o h,m:,M:,p:,v: --long help,test,veryOldChIP,saveFastq,orangeBlue,gz,singleEnd,footPrint,peakCall,nextera,bowtie1,bowtie2,seedmms:,seedlen:,maqerr:,noBowtie,blacklistFilter,noBlacklistFilter,onlyHub,onlyPeakCall,onlyFPandPC,saveUnmapped,saveUnpaired,saveBDG,saveUnpairedFiltered,saveUnfiltered,saveUnfilteredMapped,saveUntrimmed,saveUntrimmedMapped,trim,noTrim,flash,noFlash,normDepth,noWindow,trim5,outfile:,errfile:,chunkmb:,lanes:,genomes:,maxins:,mergeFP:,contigFP:,depthFP:,mergeP:,contigP:,depthP:,windowSize:,windowIncr:,windowFP:,ada3read1:,ada3read2:,ada5read1:,ada5read2:,pyramidRerun -- "$@"`
+OPTS=`getopt -o h,m:,M:,p:,v: --long help,test,veryOldChIP,saveFastq,orangeBlue,redGreen,gz,singleEnd,footPrint,peakCall,nextera,bowtie1,bowtie2,seedmms:,seedlen:,maqerr:,noBowtie,blacklistFilter,noBlacklistFilter,onlyHub,onlyPeakCall,onlyFPandPC,saveUnmapped,saveUnpaired,saveBDG,saveUnpairedFiltered,saveUnfiltered,saveUnfilteredMapped,saveUntrimmed,saveUntrimmedMapped,trim,noTrim,flash,noFlash,normDepth,noWindow,trim5,outfile:,errfile:,chunkmb:,lanes:,genomes:,maxins:,mergeFP:,contigFP:,depthFP:,mergeP:,contigP:,depthP:,windowSize:,windowIncr:,windowFP:,ada3read1:,ada3read2:,ada5read1:,ada5read2:,pyramidRerun -- "$@"`
 if [ $? != 0 ]
 then
     usage ;
@@ -614,6 +615,7 @@ while true ; do
         --saveFastq) echo "Pyramid run for GEO data, where fastq files were also saved."; shift;;
         --singleEnd) SINGLE_END=1 ; shift;;
         --orangeBlue) ORANGEBLUE=1 ; shift;;
+        --redGreen) REDGREEN=1 ; shift;;
         --chunkmb) BOWTIEMEMORY=$2 ; shift 2;;
         --lanes) LANES=$2 ; shift 2;;
         --nextera) NEXTERA=1 ; shift;;
@@ -929,6 +931,7 @@ echo "ONLY_HUB ${ONLY_HUB}  (TRUE=1, FALSE=0)" >> parameters.log
 echo "HUBBING ${HUBBING}  (TRUE=1, FALSE=0)" >> parameters.log
 echo "SYMBOLIC ${SYMBOLIC}" >> parameters.log
 echo "ORANGEBLUE ${ORANGEBLUE}" >> parameters.log
+echo "REDGREEN ${REDGREEN} (the old non-colorblind-friendly default red-green colors)" >> parameters.log
 echo ""  >> parameters.log
 
 # The public paths are just listed here, not used.
