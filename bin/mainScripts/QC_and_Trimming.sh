@@ -1,96 +1,41 @@
 #!/bin/bash
 
 ##########################################################################
-# Copyright 2017, Jelena Telenius (jelena.telenius@imm.ox.ac.uk)         #
+# Copyright 2016, Jelena Telenius (jelena.telenius@imm.ox.ac.uk)         #
 #                                                                        #
-# This file is part of CCseqBasic5 .                                     #
+# This file is part of NGseqBasic .                                      #
 #                                                                        #
-# CCseqBasic5 is free software: you can redistribute it and/or modify    #
+# NGseqBasic is free software: you can redistribute it and/or modify     #
 # it under the terms of the GNU General Public License as published by   #
 # the Free Software Foundation, either version 3 of the License, or      #
 # (at your option) any later version.                                    #
 #                                                                        #
-# CCseqBasic5 is distributed in the hope that it will be useful,         #
+# NGseqBasic is distributed in the hope that it will be useful,          #
 # but WITHOUT ANY WARRANTY; without even the implied warranty of         #
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
 # GNU General Public License for more details.                           #
 #                                                                        #
 # You should have received a copy of the GNU General Public License      #
-# along with CCseqBasic5.  If not, see <http://www.gnu.org/licenses/>.   #
+# along with NGseqBasic.  If not, see <http://www.gnu.org/licenses/>.    #
 ##########################################################################
-
 #------------------------------------------
 
 # Loading subroutines in ..
 
 echo "Loading subroutines in .."
 
-# /bin/runscripts/QC_and_Trimming.sh
+PipeTopPath="$( which $0 | sed 's/\/mainScripts\/QC_and_Trimming.sh$//' )"
 
-PipeTopPath="$( echo $0 | sed 's/\/runscripts\/QC_and_Trimming.sh$//' )"
+BashHelpersPath="${PipeTopPath}/bashHelpers"
 
-CapturePipePath="${PipeTopPath}/subroutines"
-
-# DEBUG SUBROUTINES - for the situations all hell breaks loose
-# . ${CapturePipePath}/debugHelpers.sh
-
-# TESTING file existence, log file output general messages
-CaptureCommonHelpersPath=$( dirname ${PipeTopPath} )"/commonSubroutines"
-. ${CaptureCommonHelpersPath}/testers_and_loggers.sh
-if [ "$?" -ne 0 ]; then
-    printThis="testers_and_loggers.sh safety routines cannot be found in $0. Cannot continue without safety features turned on ! \n EXITING !! "
-    printToLogFile
-    exit 1
-fi
-
-#------------------------------------------
-
-# From where to call the main scripts operating from the runscripts folder..
-
-echo
-echo "PipeTopPath ${PipeTopPath}"
-echo "CapturePipePath ${CapturePipePath}"
-echo
-
-
-#------------------------------------------
-# Setting $HOME to the current dir
-echo 'Turning on safety measures for cd rm and mv commands in $0 - restricting script to file operations "from this dir below" only :'
-HOME=$(pwd)
-echo $HOME
-echo
-# - to enable us to track mv rm and cd commands
-# from taking over the world accidentally
-# this is done in testers_and_loggers.sh subroutines, which are to be used
-# every time something gets parsed, and after that when the parsed value is used to mv cd or rm anything
-# ------------------------------------------
-
-# Test the testers and loggers ..
-
-printThis="Testing the tester subroutines in $0 .."
-printToLogFile
-printThis="${CaptureCommonHelpersPath}/testers_and_loggers_test.sh 1> testers_and_loggers_test.out 2> testers_and_loggers_test.err"
-printToLogFile
-   
-${CaptureCommonHelpersPath}/testers_and_loggers_test.sh 1> testers_and_loggers_test.out 2> testers_and_loggers_test.err
-# The above exits if any of the tests don't work properly.
-
-# The below exits if the logger test sub wasn't found (path above wrong or file not found)
-if [ "$?" -ne 0 ]; then
-    printThis="Testing testers_and_loggers.sh safety routines failed in $0. Cannot continue without testing safety features ! \n EXITING !! "
-    printToLogFile
-    exit 1
-else
-    printThis="Testing the tester subroutines completed - continuing ! "
-    printToLogFile
-fi
-
-# Comment this out, if you want to save these files :
-rm -f testers_and_loggers_test.out testers_and_loggers_test.err
+# PRINTING TO LOG AND ERROR FILES
+. ${BashHelpersPath}/logFilePrinter.sh
 
 #------------------------------------------
 
 printThis="$0"
+printToLogFile
+printThis=$( which $0 )
 printToLogFile
 
 # DOES NOT LOAD MODULES IT NEEDS :
@@ -172,11 +117,6 @@ QUAL=""
 runMode=""
 singleEnd=0
 
-# trim_galore "defaults" for the pipeline :
-stringency=1
-length=10
-qualFilter=20
-
 OPTS=`getopt -o q: --long preFilter,filter5prime,flashFilter,fastqc,customad,qmin:,filter:,basenameR1:,basenameR2:,basename:,single:,nextera:,a31:,a32:,a51:,a52: -- "$@"`
 if [ $? != 0 ]
 then
@@ -191,7 +131,6 @@ while true ; do
         --fastqc) runMode="fastqc" ; shift 1;;
         --customad) CUSTOMAD=1 ; shift 1;;
         --nextera) NEXTERA=$2 ; shift 2;;
-        --qmin) qualFilter=$2 ; shift 2;;
         --filter) runMode=$2 ; shift 2;;
         --single) singleEnd=$2 ; shift 2;;
         --basenameR1) READ1=$2 ; shift 2;;
@@ -235,6 +174,11 @@ fi
 if [ "${replaceA2_5prime}" != "no"  ] ; then
     A2_5prime=${replaceA2_5prime}
 fi
+
+# trim_galore "defaults" for the pipeline :
+stringency=1
+length=10
+qualFilter=20
 
 echo "Starting run with parameters :" >&2
 echo "runMode ${runMode}" >&2
@@ -375,23 +319,10 @@ fi
     # OVERWRITE STEP !!!!
     
 if [ "${singleEnd}" -eq 0 ] ; then
-    
-    moveCommand='mv -f ${READ1}_val_1.fq ${READ1}.fastq'
-    moveThis="${READ1}"
-    moveToHere="${READ1}"
-    checkMoveSafety    
-    mv -f "${READ1}_val_1.fq" "${READ1}.fastq"
-
-    moveCommand='mv -f ${READ2}_val_1.fq ${READ2}.fastq'
-    moveThis="${READ2}"
-    moveToHere="${READ2}"
-    checkMoveSafety      
+ 
+    mv -f "${READ1}_val_1.fq" "${READ1}.fastq"   
     mv -f "${READ2}_val_2.fq" "${READ2}.fastq"
 else
-    moveCommand='mv -f ${READ1}_trimmed.fq ${READ1}.fastq'
-    moveThis="${READ1}"
-    moveToHere="${READ1}"
-    checkMoveSafety  
     mv -f "${READ1}_trimmed.fq" "${READ1}.fastq" 
 fi
 
@@ -446,10 +377,6 @@ if [ "${singleEnd}" -eq 0 ] ; then
     if [ $? -ne 0 ]; then trimmingOK=0;fi
     rm -f TEMP_R1_trimmed.fastq TEMP_R2_trimmed.fastq
 
-    moveCommand='mv -f TEMP_R1_trimmed_val_1.fq ${READ1}.fastq'
-    moveThis="${READ1}"
-    moveToHere="${READ1}"
-    checkMoveSafety  
     mv -f "TEMP_R1_trimmed_val_1.fq" "${READ1}.fastq"
     mv -f "TEMP_R2_trimmed_val_2.fq" "${READ2}.fastq"
 else
