@@ -367,8 +367,9 @@ ONLYHUB=0
 OUTFILENAME="qsub.out"
 ERRFILENAME="qsub.err"
 ORANGEBLUE="0"
+REDGREEN="0"
 
-OPTS=`getopt -o o:,e:,g:,n:,w:,p:,W: --long rerun:,ploidyTrack:,onlyhub:,singleEnd:,symbolic:,orangeblue: -- "$@"`
+OPTS=`getopt -o o:,e:,g:,n:,w:,p:,W: --long rerun:,ploidyTrack:,onlyhub:,singleEnd:,symbolic:,orangeblue:,redgreen: -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -391,6 +392,7 @@ while true ; do
         --ploidyTrack) PLOIDYFILTERED=$2 ; shift 2;;
         --symbolic) SYMBOLICLINKS=$2 ; shift 2;;
         --orangeblue) ORANGEBLUE=$2 ; shift 2;;
+        --redgreen) REDGREEN=$2 ; shift 2;;
         --) shift; break;;
     esac
 done

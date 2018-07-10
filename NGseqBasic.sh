@@ -229,10 +229,10 @@ if [ "${HUBBING}" -eq 1 ] ; then
         TEMPORARYgenome="mm10"
     fi
 
-    printThis="${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE}" -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic "${SYMBOLIC}" -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE}"
+    printThis="${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE}" -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic "${SYMBOLIC}" -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN} "
     printToLogFile
 
-    ${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE} " -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic ${SYMBOLIC} -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE}
+    ${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE} " -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic ${SYMBOLIC} -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN}
     rm -f versionInfoHTML.txt
     
     rm -f dnase_pipe_1_param.txt
