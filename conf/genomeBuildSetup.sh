@@ -53,6 +53,10 @@ supportedGenomes[9]="dm6"
 supportedGenomes[10]="mm10balb"
 supportedGenomes[11]="sacCer3"
 
+supportedGenomes[12]="RSmm9CTCFinsFwd"
+supportedGenomes[13]="RSmm9CTCFinsRev"
+supportedGenomes[14]="RSmm9CTCFinsWT"
+
 # The above genomes should have :
 # 1) bowtie1 indices
 # 2) bowtie2 indices
@@ -96,6 +100,10 @@ BOWTIE1[8]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm3/Sequence/BowtieI
 BOWTIE1[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/BowtieIndex/genome"
 BOWTIE1[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie1-indexes/mm10_BALB-cJ"
 BOWTIE1[11]="/databank/igenomes/Saccharomyces_cerevisiae/UCSC/sacCer3/Sequence/BowtieIndex/genome"
+
+BOWTIE1[12]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_whole_genome/bowtie1_indices_fwd/Fwdins_whole_genome"
+BOWTIE1[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie1_indices_rev/revins_whole_genome"
+BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -141,6 +149,10 @@ BOWTIE2[9]="/databank/igenomes/Drosophila_melanogaster/UCSC/dm6/Sequence/Bowtie2
 BOWTIE2[10]="/t1-data/user/rbeagrie/genomes/balbc/mm10_BALB-cJ_snpsonly/bowtie2-indexes/mm10_BALB-cJ"
 BOWTIE2[11]="/databank/igenomes/Saccharomyces_cerevisiae/UCSC/sacCer3/Sequence/Bowtie2Index/genome"
 
+BOWTIE2[12]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_whole_genome/bowtie2_indices_fwd/fwdins_whole_genome"
+BOWTIE2[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie2_indices_rev/revins_whole_genome"
+BOWTIE2[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie2_indices_wt/wt_complete"
+
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
 # Not all of them need to exist : only the ones you will be using.
@@ -175,6 +187,10 @@ UCSC[8]="${confFolder}/UCSCgenomeSizes/dm3.chrom.sizes"
 UCSC[9]="${confFolder}/UCSCgenomeSizes/dm6.chrom.sizes"
 UCSC[10]="${confFolder}/UCSCgenomeSizes/mm10.chrom.sizes"
 UCSC[11]="${confFolder}/UCSCgenomeSizes/sacCer3.chrom.sizes"
+
+UCSC[12]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
+UCSC[13]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
+UCSC[14]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFwt.chrom.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
@@ -225,6 +241,10 @@ genomesWhichHaveBlacklist[1]="mm10"
 genomesWhichHaveBlacklist[2]="hg18"
 genomesWhichHaveBlacklist[3]="hg19"
 genomesWhichHaveBlacklist[4]="mm10balb"
+# The following is not exactly correct, but correct enough.
+genomesWhichHaveBlacklist[5]="RSmm9CTCFinsFwd"
+genomesWhichHaveBlacklist[6]="RSmm9CTCFinsRev"
+genomesWhichHaveBlacklist[7]="RSmm9CTCFinsWT"
 
 # - i.e. : not all genomes have to have a blacklist.
 # If the genome is not listed here, blacklist filtering is NOT conducted within the pipeline (turned off automatically).
@@ -235,6 +255,10 @@ BLACKLIST[1]="${confFolder}/BLACKLIST/mm10.bed"
 BLACKLIST[2]="${confFolder}/BLACKLIST/hg18.bed"
 BLACKLIST[3]="${confFolder}/BLACKLIST/hg19.bed"
 BLACKLIST[4]="${confFolder}/BLACKLIST/mm10.bed"
+# The following is not exactly correct, but correct enough.
+BLACKLIST[5]="${confFolder}/BLACKLIST/mm9.bed"
+BLACKLIST[6]="${confFolder}/BLACKLIST/mm9.bed"
+BLACKLIST[7]="${confFolder}/BLACKLIST/mm9.bed"
 
 # The indices in the BLACKLIST array refer to genome names in genomesWhichHaveBlacklist array.
 
