@@ -191,6 +191,11 @@ trimRound(){
     printThis="${PipePath}/QC_and_Trimming.sh -q ${intQuals} --filter ${trimDirection} --basenameR1 UNMAPPED_1 --basenameR2 UNMAPPED_2 --single ${SINGLE_END} --nextera ${NEXTERA} --customad --a31 ${ADA31} --a32 ${ADA32} --a51 ${ADA51} --a52 ${ADA52}"
     printToLogFile
     ${PipePath}/QC_and_Trimming.sh -q "${intQuals}" --filter "${trimDirection}" --basenameR1 "UNMAPPED_1" --basenameR2 "UNMAPPED_2" --single ${SINGLE_END} --nextera ${NEXTERA} --customad --a31 ${ADA31} --a32 ${ADA32} --a51 ${ADA51} --a52 ${ADA52}
+    if [ "$?" -ne 0 ]; then
+    printThis="TrimGalore run failed ! Possible reasons : \n 1) did you maybe use .gz packed files without adding --gz to the run parameters ? \n 2) did you try to run with corrupted input fastq files ? \n EXITING !! "
+    printToLogFile
+    exit 1
+    fi
         
     else
     # We have standard adapters, one way or another.
@@ -199,6 +204,11 @@ trimRound(){
     printToLogFile
     ${PipePath}/QC_and_Trimming.sh -q "${intQuals}" --filter "${trimDirection}" --basenameR1 "UNMAPPED_1" --basenameR2 "UNMAPPED_2" --single ${SINGLE_END} --nextera ${NEXTERA}
     # This updated UNMAPPED_1.fastq UNMAPPED_2.fastq to be the TRIMMED files (overwrote them with the trimmed versions)
+    if [ "$?" -ne 0 ]; then
+    printThis="TrimGalore run failed ! Possible reasons : \n 1) did you maybe use .gz packed files without adding --gz to the run parameters ? \n 2) did you try to run with corrupted input fastq files ? \n EXITING !! "
+    printToLogFile
+    exit 1
+    fi
     
     fi
     

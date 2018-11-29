@@ -353,8 +353,6 @@ sleep 5
 
 # Test that user has made at least SOME changes to them (otherwise they are running with the WIMM configuration .. )
 
-setupMade=0
-
 echo
 echo "###########################################"
 echo
@@ -364,13 +362,18 @@ echo
 sleep 6
 
 
-setupMade=1
+# We have 3 files - if all of them are in WIMM setup, we end up with "0" as the value in the end ..
+setupMade=3
+genomeSetupMade=1
+toolsSetupMade=1
+serverSetupMade=1
 
 TEMPcount=$(($( diff ${PipeTopPath}/bin/bashHelpers/validateSetup/g.txt ${confFolder}/genomeBuildSetup.sh | grep -c "" )))
 
 if [ "${TEMPcount}" -eq 0 ]
 then
-setupMade=0
+setupMade=$((${setupMade}-1))
+genomeSetupMade=0
 echo
 echo "WARNING ! It seems you haven't set up your Bowtie Genome indices !"
 echo "          Add your Bowtie indices to this file : "
@@ -383,7 +386,8 @@ TEMPcount=$(($( diff ${PipeTopPath}/bin/bashHelpers/validateSetup/l.txt ${confFo
 
 if [ "${TEMPcount}" -eq 0 ]
 then
-setupMade=0
+setupMade=$((${setupMade}-1))
+toolsSetupMade=0
 echo
 echo "WARNING ! It seems you haven't set up the loading of your Needed Toolkits !"
 echo "          Add your toolkit paths to this file : "
@@ -399,7 +403,8 @@ TEMPcount=$(($( diff ${PipeTopPath}/bin/bashHelpers/validateSetup/s.txt ${confFo
 
 if [ "${TEMPcount}" -eq 0 ]
 then
-setupMade=0
+setupMade=$((${setupMade}-1))
+serverSetupMade=0
 echo
 echo "WARNING ! It seems you haven't set up your Server address and Public Disk Area !"
 echo "          Add your Server address to this file : "
@@ -421,6 +426,10 @@ echo "http://sara.molbiol.ox.ac.uk/public/telenius/NGseqBasicManual/external/ins
 echo
 sleep 4
 
+exitCode=1
+
+fi
+
 if [ "${exitCode}" -gt 0 ]
 then
 exit 1
@@ -428,9 +437,16 @@ else
 exit 0
 fi
 
-fi
+##########################################################################
+
+# These have been checked earlier. Should exist now.
+. ${confFolder}/loadNeededTools.sh
+. ${confFolder}/genomeBuildSetup.sh
+. ${confFolder}/serverAddressAndPublicDiskSetup.sh
 
 ##########################################################################
+
+if [ "${genomeSetupMade}" -eq 1 ]; then 
 
 supportedGenomes=()
 BOWTIE1=()
@@ -439,15 +455,7 @@ UCSC=()
 genomesWhichHaveBlacklist=()
 BLACKLIST=()
 
-# These have been checked earlier. Should exist now.
-. ${confFolder}/loadNeededTools.sh
-. ${confFolder}/genomeBuildSetup.sh
-. ${confFolder}/serverAddressAndPublicDiskSetup.sh
-
-
 setGenomeLocations 1>/dev/null
-setPublicLocations 1>/dev/null
-setPathsForPipe 1>/dev/null
 
 echo
 sleep 4
@@ -553,12 +561,27 @@ done
 echo
 sleep 2
 
+else
+ 
+echo "###########################################"
+echo
+echo "4) Skipping genome setup testing ( as genomBuildSetup.sh was not filled with genome locations )"
+echo   
+
+sleep 3
+ 
+fi
+
 ##########################################################################
 
+if [ "${toolsSetupMade}" -eq 1 ]; then
+    
 echo "###########################################"
 echo
 echo "5) Testing that all toolkits (bowtie etc) are found in the user-defined locations"
 echo
+
+setPathsForPipe 1>/dev/null
 
 echo "Ucsctools .."
 echo
@@ -660,12 +683,28 @@ exitCode=$(( ${exitCode} + $? ))
 echo
 
 sleep 2
+
+else
+ 
+echo "###########################################"
+echo
+echo "5) Skipping toolkit availability testing ( as loadNeededTools.sh was not set up to find the proper tool locations )"
+echo   
+
+sleep 3
+ 
+fi
+
 ##########################################################################
 
+if [ "${serverSetupMade}" -eq 1 ]; then
+    
 echo "###########################################"
 echo
 echo "6) Testing that the user-defined public server exists"
 echo
+
+setPublicLocations 1>/dev/null
 
 echo
 echo "Public area settings : "
@@ -694,6 +733,37 @@ exitCode=$(( ${exitCode} + $? ))
 
 sleep 5
 
+else
+ 
+echo "###########################################"
+echo
+echo "6) Skipping public server existence testing ( as serverAddressAndPublicDiskSetup.sh was not filled with the server address )"
+echo   
+
+sleep 3
+ 
+fi
+
+# ##################################
+
+if [ "${setupMade}" -ne 3 ]
+then
+echo 
+echo
+echo "ERROR : Could not finish testing, as you hadn't set up all of your environment !"
+echo
+echo "One or more of these need to be still set up :"
+echo "1) genome locations"
+echo "2) tool locations"
+echo "3) server address"
+echo 
+echo "Set up your files according to instructions in :"
+echo "http://sara.molbiol.ox.ac.uk/public/telenius/CCseqBasicManual/instructionsGeneral.html"
+echo
+
+exitCode=1
+
+fi
 
 # Return the value : 0 if only warnings, 1 if fatal problems.
 if [ "${exitCode}" -gt 0 ]
