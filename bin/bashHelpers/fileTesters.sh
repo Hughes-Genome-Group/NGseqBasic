@@ -19,6 +19,18 @@
 # along with NGseqBasic.  If not, see <http://www.gnu.org/licenses/>.    #
 ##########################################################################
 
+doInputFileTesting(){
+    
+    # NEEDS THIS TO BE SET BEFORE CALL :
+    # testedFile=""    
+    
+    if [ ! -r "${testedFile}" ] || [ ! -e "${testedFile}" ] || [ ! -f "${testedFile}" ] || [ ! -s "${testedFile}" ]; then
+      echo "Input file not found or empty file : ${testedFile}" >> "/dev/stderr"
+      echo "EXITING!!" >> "/dev/stderr"
+      exit 1
+    fi
+}
+
 doTempFileTesting(){
     
     # NEEDS THIS TO BE SET BEFORE CALL :

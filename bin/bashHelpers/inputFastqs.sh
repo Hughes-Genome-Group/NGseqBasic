@@ -28,6 +28,11 @@ fetchFastq(){
     
     printThis="${fileList1[$i]}"
     printToLogFile
+    testedFile="${fileList1[$i]}"
+    doInputFileTesting
+    
+    echo "original size (R1)"
+    ls -lht ${fileList1[$i]} | cut -d " " -f 1,2,3,4 --complement
     
     if [ "${GZIP}" -eq 0 ] ; then
     
@@ -38,6 +43,8 @@ fetchFastq(){
     
     echo "cp ${fileList1[$i]} ./READ1.fastq.gz"
     cp "${fileList1[$i]}" ./READ1.fastq.gz
+    echo "original size (R1 copied)"
+    ls -lht READ1.fastq.gz | cut -d " " -f 1,2,3,4 --complement
     
     gzip -d READ1.fastq.gz
     
@@ -53,7 +60,12 @@ fetchFastq(){
     
     printThis="${fileList2[$i]}"
     printToLogFile
+    testedFile="${fileList2[$i]}"
+    doInputFileTesting
     
+    echo "original size (R2)"
+    ls -lht ${fileList2[$i]} | cut -d " " -f 1,2,3,4 --complement
+
     if [ "${GZIP}" -eq 0 ] ; then
     
     echo "cp ${fileList2[$i]} ./READ2.fastq"
@@ -63,6 +75,8 @@ fetchFastq(){
     
     echo "cp ${fileList2[$i]} ./READ2.fastq.gz"
     cp "${fileList2[$i]}" ./READ2.fastq.gz
+    echo "original size (R2 copied)"
+    ls -lht READ2.fastq.gz | cut -d " " -f 1,2,3,4 --complement
     
     gzip -d READ2.fastq.gz
     
@@ -107,15 +121,25 @@ fetchFastqMultilane(){
         echo "Lane no $l .."
         currentLane=$( echo ${allLanes} | sed s'/,.*$//' )
         echo "Current lane : ${currentLane}"
+        testedFile="${currentLane}"
+        doInputFileTesting
         
+        echo "original size (current lane R1)"
+        ls -lht ${currentLane} | cut -d " " -f 1,2,3,4 --complement
         if [ "${GZIP}" -eq 0 ] ; then
            cat "${currentLane}" >> ./READ1.fastq
         else
            cp "${currentLane}" ./TEMP.fastq.gz
-           gzip -d TEMP.fastq.gz 
+           echo "original size (current lane R1 copied)"
+           ls -lht TEMP.fastq.gz | cut -d " " -f 1,2,3,4 --complement
+           gzip -d TEMP.fastq.gz
+           echo "unpacked size (current lane R1 unpacked)"
+           ls -lht TEMP.fastq | cut -d " " -f 1,2,3,4 --complement
            cat TEMP.fastq >> ./READ1.fastq
            rm -f TEMP.fastq*
         fi
+        echo "current size of combined file R1"
+        ls -lht READ1.fastq | cut -d " " -f 1,2,3,4 --complement
         
         # Saving rest and looping to next round..
         removeThis=$( echo ${currentLane} | sed 's/\//\\\//g' )
@@ -146,15 +170,25 @@ fetchFastqMultilane(){
         echo "Lane no $l .."
         currentLane=$( echo ${allLanes} | sed s'/,.*$//' )
         echo "Current lane : ${currentLane}"
+        testedFile="${currentLane}"
+        doInputFileTesting
         
+        echo "original size (current lane R2)"
+        ls -lht ${currentLane} | cut -d " " -f 1,2,3,4 --complement
         if [ "${GZIP}" -eq 0 ] ; then
            cat "${currentLane}" >> ./READ2.fastq
         else
            cp "${currentLane}" ./TEMP.fastq.gz
+           echo "original size (current lane R2 copied)"
+           ls -lht TEMP.fastq.gz | cut -d " " -f 1,2,3,4 --complement
            gzip -d TEMP.fastq.gz
+           echo "unpacked size (current lane R2 unpacked)"
+           ls -lht TEMP.fastq | cut -d " " -f 1,2,3,4 --complement
            cat TEMP.fastq >> ./READ2.fastq
            rm -f TEMP.fastq*
         fi
+        echo "current size of combined file R2"
+        ls -lht READ2.fastq | cut -d " " -f 1,2,3,4 --complement
         
         # Saving rest and looping to next round..
         removeThis=$( echo ${currentLane} | sed 's/\//\\\//g' )
