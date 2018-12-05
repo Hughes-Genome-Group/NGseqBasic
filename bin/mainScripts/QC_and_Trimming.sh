@@ -302,18 +302,29 @@ fi
     
 # Check if files exist, if not, exit 1
 
-if [ ! -s ${READ1}_val_1.fq ]; then
-    printThis="Trimming failed : Trimgalore output file ${READ1}_val_1.fq is empty ! \n EXITING !! "
-    printToLogFile
-    exit 1    
-fi
 
-if [ "${singleEnd}" -eq 0 ] ; then
-if [ ! -s ${READ2}_val_2.fq ]; then
-    printThis="Trimming failed : Trimgalore output file ${READ2}_val_2.fq is empty ! \n EXITING !! "
-    printToLogFile
-    exit 1    
-fi    
+
+if [ "${singleEnd}" -eq 0 ] ; then  
+
+    if [ ! -s ${READ1}_val_1.fq ]; then
+        printThis="Trimming failed : Trimgalore output file ${READ1}_val_1.fq is empty ! \n EXITING !! "
+        printToLogFile
+        exit 1    
+    fi
+    if [ ! -s ${READ2}_val_2.fq ]; then
+        printThis="Trimming failed : Trimgalore output file ${READ2}_val_2.fq is empty ! \n EXITING !! "
+        printToLogFile
+        exit 1    
+    fi
+
+else
+    
+    if [ ! -s ${READ1}_trimmed.fq ]; then
+        printThis="Trimming failed : Trimgalore output file ${READ1}_trimmed.fq is empty ! \n EXITING !! "
+        printToLogFile
+        exit 1    
+    fi
+
 fi
     
     # OVERWRITE STEP !!!!
