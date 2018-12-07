@@ -454,6 +454,28 @@ runPipe(){
 #
 ######################################################################
 
+#------------------------------------------
+
+# script top path setup , usage script load.
+
+PipeTopPath="$( which $0 | sed 's/\/NGseqBasic.sh$//' )"
+BashHelpersPath="${PipeTopPath}/bin/bashHelpers"
+
+. ${BashHelpersPath}/usageAndVersion.sh
+
+#------------------------------------------
+
+# help user cases .
+
+if [ "$1" == '-h' ] || [ "$1" == '--help' ]
+then
+    usage ;
+fi
+
+
+#------------------------------------------
+
+######################################################################
 QSUBOUTFILE="qsub.out"
 QSUBERRFILE="qsub.err"
 
@@ -528,10 +550,6 @@ dirForQuotaAsking=$( pwd )
 #------------------------------------------
 
 # Loading subroutines in ..
-
-PipeTopPath="$( which $0 | sed 's/\/NGseqBasic.sh$//' )"
-
-BashHelpersPath="${PipeTopPath}/bin/bashHelpers"
 
 # CLEANING UP AND LISTING FOLDER CONTENTS
 . ${BashHelpersPath}/cleanUpAndList.sh
