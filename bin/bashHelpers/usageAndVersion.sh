@@ -93,6 +93,8 @@ echo "--errfile qsub.err (the STDERR log file name in your RUN COMMAND - see abo
 echo ""
 echo "ACCESSIBILITY SETTINGS"
 echo "--orangeBlue (use orange-blue color scheme instead of red-green)"
+echo "--redGreen   (use the OLD redGreen colors - very colorblind unfriendly, i.e. the default colors of runs before 2019)"
+echo "Default : not use either of above (use pink-green colors, which are colorblind friendly)"
 echo ""
 echo "FASTQ SETTINGS"
 echo "--gz (input files are provided in file.fastq.gz compressed format )"
