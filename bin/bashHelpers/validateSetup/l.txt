@@ -70,12 +70,16 @@ module load bedtools/2.17.0
 
 module load ucsctools/1.0
 # Supports ucsctools versions 1.* . Not known if supports also ucsctools versions 2.* (most probably not)
-# The needed tools are :
-#    bedGraphToBigWig
-#    bedClip
-#    bedGraphPack
-#    bedToBigBed
-#    bigBedToBed
+# The needed tools (and the versions NGseqBasic was tested) are :
+#
+# Fetched from UCSC Jul  7  2014 (based on timestamp on our machine)
+# bedGraphToBigWig v 4 - Convert a bedGraph file to bigWig format.
+# bedClip - Remove lines from bed file that refer to off-chromosome places.
+# bedGraphPack v1 - Pack together adjacent records representing same value.
+# bedToBigBed v. 2.6 - Convert bed file to bigBed. (BigBed version: 4)
+# bigBedToBed v1 - Convert from bigBed to ascii bed format.
+#
+# If you end up in trouble when using "too new" UCSCtools - we can distribute our intra-house versions of these scripts.
 
 module load flash/1.2.8
 # Not known if would support other flash versions. Most probably will support.
