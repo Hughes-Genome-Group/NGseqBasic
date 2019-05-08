@@ -57,6 +57,8 @@ supportedGenomes[12]="RSmm9CTCFinsFwd"
 supportedGenomes[13]="RSmm9CTCFinsRev"
 supportedGenomes[14]="RSmm9CTCFinsWT"
 
+supportedGenomes[15]="galGal5"
+
 # The above genomes should have :
 # 1) bowtie1 indices
 # 2) bowtie2 indices
@@ -104,6 +106,8 @@ BOWTIE1[11]="/databank/igenomes/Saccharomyces_cerevisiae/UCSC/sacCer3/Sequence/B
 BOWTIE1[12]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_whole_genome/bowtie1_indices_fwd/Fwdins_whole_genome"
 BOWTIE1[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie1_indices_rev/revins_whole_genome"
 BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
+
+BOWTIE1[15]="/databank/igenomes/Gallus_gallus/UCSC/galGal5/Sequence/BowtieIndex/genome"
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -153,6 +157,8 @@ BOWTIE2[12]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_who
 BOWTIE2[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie2_indices_rev/revins_whole_genome"
 BOWTIE2[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie2_indices_wt/wt_complete"
 
+BOWTIE2[15]="/databank/igenomes/Gallus_gallus/UCSC/galGal5/Sequence/Bowtie2Index/genome"
+
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
 # Not all of them need to exist : only the ones you will be using.
@@ -191,6 +197,8 @@ UCSC[11]="${confFolder}/UCSCgenomeSizes/sacCer3.chrom.sizes"
 UCSC[12]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[13]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[14]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFwt.chrom.sizes"
+
+UCSC[15]="${confFolder}/UCSCgenomeSizes/galGal4.chrom.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
