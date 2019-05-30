@@ -108,7 +108,7 @@ BOWTIE1[12]="/databank/igenomes/Gallus_gallus/UCSC/galGal5/Sequence/BowtieIndex/
 BOWTIE1[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_whole_genome/bowtie1_indices_fwd/Fwdins_whole_genome"
 BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie1_indices_rev/revins_whole_genome"
 BOWTIE1[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
-BOWTIE1[16]"/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/bowtie1_indices/mm9_12LP1R2"
+BOWTIE1[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/bowtie1_indices/mm9_12LP1R2"
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
