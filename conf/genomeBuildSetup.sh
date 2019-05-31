@@ -58,7 +58,7 @@ supportedGenomes[13]="RSmm9CTCFinsFwd"
 supportedGenomes[14]="RSmm9CTCFinsRev"
 supportedGenomes[15]="RSmm9CTCFinsWT"
 supportedGenomes[16]="mm9_12LP1R2"
-
+supportedGenomes[17]="hg19_Vs"
 
 # The above genomes should have :
 # 1) bowtie1 indices
@@ -109,6 +109,7 @@ BOWTIE1[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_who
 BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie1_indices_rev/revins_whole_genome"
 BOWTIE1[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
 BOWTIE1[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/bowtie1/genome"
+BOWTIE1[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie1_indices/hg19_Vs"
 
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
@@ -160,6 +161,7 @@ BOWTIE2[13]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/fwd_who
 BOWTIE2[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_whole_genome/bowtie2_indices_rev/revins_whole_genome"
 BOWTIE2[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie2_indices_wt/wt_complete"
 BOWTIE2[16]="NOT_SUPPORTED_needsToBeAddedToConfigFile"
+BOWTIE2[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie2_indecies/hg19_Vs"
 
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
@@ -201,6 +203,7 @@ UCSC[13]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[14]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[15]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFwt.chrom.sizes"
 UCSC[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/mm9_12LP1R2.chrom.sizes"
+UCSC[17]="${confFolder}/UCSCgenomeSizes/hg19.chrom.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
@@ -256,6 +259,7 @@ genomesWhichHaveBlacklist[5]="RSmm9CTCFinsFwd"
 genomesWhichHaveBlacklist[6]="RSmm9CTCFinsRev"
 genomesWhichHaveBlacklist[7]="RSmm9CTCFinsWT"
 genomesWhichHaveBlacklist[8]="mm9_12LP1R2"
+genomesWhichHaveBlacklist[9]="hg19_Vs"
 # - i.e. : not all genomes have to have a blacklist.
 # If the genome is not listed here, blacklist filtering is NOT conducted within the pipeline (turned off automatically).
 # It is HIGHLY RECOMMENDED to generate intra-house peak call for ALL GENOMES - from a control (sonication etc) data , however !
@@ -270,6 +274,7 @@ BLACKLIST[5]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[6]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[7]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[8]="${confFolder}/BLACKLIST/mm9_12LP1R2.bed"
+BLACKLIST[9]="${confFolder}/BLACKLIST/hg19.bed"
 
 # The indices in the BLACKLIST array refer to genome names in genomesWhichHaveBlacklist array.
 
