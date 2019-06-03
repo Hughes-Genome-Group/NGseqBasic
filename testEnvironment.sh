@@ -198,7 +198,7 @@ exitCode=$(( ${exitCode} + $? ))
 
 # From where to call the CONFIGURATION script..
 
-confFolder="${PipeTopPath}/conf"
+confFolder="$(cd ${PipeTopPath}; pwd)/conf"
 mainScriptFolder="${PipeTopPath}/bin/mainScripts"
 helperScriptFolder="${PipeTopPath}/bin/bashHelpers"
 perlScriptFolder="${PipeTopPath}/bin/perlHelpers"
@@ -428,11 +428,6 @@ sleep 4
 
 exitCode=1
 
-fi
-
-if [ "${exitCode}" -gt 0 ]
-then
-exit 1
 fi
 
 ##########################################################################
