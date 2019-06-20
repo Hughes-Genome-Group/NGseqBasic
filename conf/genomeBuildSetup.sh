@@ -60,6 +60,7 @@ supportedGenomes[15]="RSmm9CTCFinsWT"
 supportedGenomes[16]="mm9_12LP1R2"
 supportedGenomes[17]="hg19_Vs"
 
+
 # The above genomes should have :
 # 1) bowtie1 indices
 # 2) bowtie2 indices
@@ -110,7 +111,6 @@ BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_who
 BOWTIE1[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
 BOWTIE1[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/bowtie1/genome"
 BOWTIE1[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie1_indices/hg19_Vs"
-
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -170,6 +170,45 @@ BOWTIE2[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie2_indecies/hg
 
 # When adding new genomes : remember to update the "supportedGenomes" list above (top of this file) as well !
 
+# #############################################################################
+# BOWTIE 3 / HiSat3 INDICES
+# #############################################################################
+
+
+BOWTIE3[0]="/databank/igenomes/Mus_musculus/UCSC/mm9/Sequence/HISAT2/genome"
+
+# ls -lht /databank/igenomes/Mus_musculus/UCSC/mm9/Sequence/HISAT2
+
+#-rw-r--r-- 1 smcgowan staff 1.1G May 11  2016 genome.5.ht2
+#-rw-r--r-- 1 smcgowan staff 622M May 11  2016 genome.6.ht2
+#-rw-r--r-- 1 smcgowan staff 818M May 11  2016 genome.1.ht2
+#-rw-r--r-- 1 smcgowan staff 611M May 11  2016 genome.2.ht2
+#-rw-r--r-- 1 smcgowan staff    8 May 11  2016 genome.7.ht2
+#-rw-r--r-- 1 smcgowan staff    8 May 11  2016 genome.8.ht2
+#-rw-r--r-- 1 smcgowan staff 5.8K May 11  2016 genome.3.ht2
+#-rw-r--r-- 1 smcgowan staff 611M May 11  2016 genome.4.ht2
+
+
+BOWTIE3[1]="/databank/igenomes/Mus_musculus/UCSC/mm10/Sequence/HISAT2/genome"
+BOWTIE3[2]="/databank/igenomes/Homo_sapiens/UCSC/hg18/Sequence/HISAT2/genome"
+BOWTIE3[3]="/databank/igenomes/Homo_sapiens/UCSC/hg19/Sequence/HISAT2/genome"
+BOWTIE3[4]="/databank/igenomes/Homo_sapiens/UCSC/hg38/Sequence/HISAT2/genome"
+BOWTIE3[5]="GenomeNotYetSupported"
+BOWTIE3[6]="GenomeNotYetSupported"
+BOWTIE3[7]="GenomeNotYetSupported"
+BOWTIE3[8]="GenomeNotYetSupported"
+BOWTIE3[9]="GenomeNotYetSupported"
+BOWTIE3[10]="GenomeNotYetSupported"
+BOWTIE3[11]="GenomeNotYetSupported"
+BOWTIE3[12]="GenomeNotYetSupported"
+
+BOWTIE3[13]="GenomeNotYetSupported"
+BOWTIE3[14]="GenomeNotYetSupported"
+BOWTIE3[15]="GenomeNotYetSupported"
+BOWTIE3[16]="GenomeNotYetSupported"
+BOWTIE3[17]="GenomeNotYetSupported"
+
+
 
 # #############################################################################
 # UCSC GENOME SIZES
@@ -204,6 +243,7 @@ UCSC[14]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[15]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFwt.chrom.sizes"
 UCSC[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/mm9_12LP1R2.chrom.sizes"
 UCSC[17]="${confFolder}/UCSCgenomeSizes/hg19.chrom.sizes"
+
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
@@ -260,6 +300,8 @@ genomesWhichHaveBlacklist[6]="RSmm9CTCFinsRev"
 genomesWhichHaveBlacklist[7]="RSmm9CTCFinsWT"
 genomesWhichHaveBlacklist[8]="mm9_12LP1R2"
 genomesWhichHaveBlacklist[9]="hg19_Vs"
+
+
 # - i.e. : not all genomes have to have a blacklist.
 # If the genome is not listed here, blacklist filtering is NOT conducted within the pipeline (turned off automatically).
 # It is HIGHLY RECOMMENDED to generate intra-house peak call for ALL GENOMES - from a control (sonication etc) data , however !
@@ -275,6 +317,7 @@ BLACKLIST[6]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[7]="${confFolder}/BLACKLIST/mm9.bed"
 BLACKLIST[8]="${confFolder}/BLACKLIST/mm9_12LP1R2.bed"
 BLACKLIST[9]="${confFolder}/BLACKLIST/hg19.bed"
+
 
 # The indices in the BLACKLIST array refer to genome names in genomesWhichHaveBlacklist array.
 

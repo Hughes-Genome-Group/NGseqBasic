@@ -598,6 +598,7 @@ confFolder="${PipeTopPath}/conf"
 supportedGenomes=()
 BOWTIE1=()
 BOWTIE2=()
+BOWTIE3=()
 UCSC=()
 genomesWhichHaveBlacklist=()
 BLACKLIST=()
@@ -612,7 +613,7 @@ setPublicLocations
 #------------------------------------------
 
 
-OPTS=`getopt -o h,m:,M:,p:,v: --long help,test,veryOldChIP,saveFastq,orangeBlue,redGreen,gz,singleEnd,footPrint,peakCall,nextera,bowtie1,bowtie2,seedmms:,seedlen:,maqerr:,noBowtie,blacklistFilter,noBlacklistFilter,onlyHub,onlyPeakCall,onlyFPandPC,saveUnmapped,saveUnpaired,saveBDG,saveUnpairedFiltered,saveUnfiltered,saveUnfilteredMapped,saveUntrimmed,saveUntrimmedMapped,trim,noTrim,flash,noFlash,normDepth,noWindow,trim5,outfile:,errfile:,chunkmb:,lanes:,genomes:,maxins:,mergeFP:,contigFP:,depthFP:,mergeP:,contigP:,depthP:,windowSize:,windowIncr:,windowFP:,ada3read1:,ada3read2:,ada5read1:,ada5read2:,pyramidRerun -- "$@"`
+OPTS=`getopt -o h,m:,M:,p:,v: --long help,test,veryOldChIP,saveFastq,orangeBlue,redGreen,gz,singleEnd,footPrint,peakCall,nextera,bowtie1,bowtie2,hisat2,seedmms:,seedlen:,maqerr:,noBowtie,blacklistFilter,noBlacklistFilter,onlyHub,onlyPeakCall,onlyFPandPC,saveUnmapped,saveUnpaired,saveBDG,saveUnpairedFiltered,saveUnfiltered,saveUnfilteredMapped,saveUntrimmed,saveUntrimmedMapped,trim,noTrim,flash,noFlash,normDepth,noWindow,trim5,outfile:,errfile:,chunkmb:,lanes:,genomes:,maxins:,mergeFP:,contigFP:,depthFP:,mergeP:,contigP:,depthP:,windowSize:,windowIncr:,windowFP:,ada3read1:,ada3read2:,ada5read1:,ada5read2:,pyramidRerun -- "$@"`
 if [ $? != 0 ]
 then
     usage ;
@@ -639,6 +640,7 @@ while true ; do
         --nextera) NEXTERA=1 ; shift;;
         --bowtie1) BOWTIE=1 ; shift;;
         --bowtie2) BOWTIE=2 ; shift;;
+        --hisat2) BOWTIE=3 ; shift;;
         --noBowtie) SKIP_BOWTIE=1 ; shift;;
         --noBlacklistFilter) PLOIDYFILTER=0 ; shift;;
         --blacklistFilter) PLOIDYFILTER=1 ; shift;;
@@ -892,7 +894,7 @@ echo "LANES ${LANES}" >> parameters.log
 echo "GZIP ${GZIP} (TRUE=1, FALSE=0) - if fastq input files are gzipped "
 echo ""  >> parameters.log
 echo "SKIP_BOWTIE ${SKIP_BOWTIE}  (TRUE=1, FALSE=0)" >> parameters.log
-echo "BOWTIE ${BOWTIE} (Bowtie1=1, Bowtie2=2)" >> parameters.log
+echo "BOWTIE ${BOWTIE} (Bowtie1=1, Bowtie2=2, hisat2=3)" >> parameters.log
 echo "BOWTIE_PROCESSORS ${BOWTIE_PROCESSORS}" >> parameters.log
 echo "BOWTIEMEMORY ${BOWTIEMEMORY}" >> parameters.log
 echo "MAXINS ${MAXINS}" >> parameters.log

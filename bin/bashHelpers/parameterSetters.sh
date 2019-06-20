@@ -148,6 +148,8 @@ if [ "${SINGLE_END}" -eq 0 ] ; then
 else
     if [ "${BOWTIE}" -eq 2 ] ; then
         bowtieReadList="-U ./READ1.fastq"
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+        bowtieReadList="-U ./READ1.fastq"   
     else
         bowtieReadList="./READ1.fastq"
     fi  

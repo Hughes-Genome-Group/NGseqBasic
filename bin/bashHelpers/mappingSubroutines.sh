@@ -104,15 +104,25 @@ printNewChapterToLogFile
     echo  >&2
     echo "Preliminary bowtie to separate unpaired reads" >&2
     
+    echo "BOWTIE ${BOWTIE}"
+    
     if [ "${BOWTIE}" -eq 2 ] ; then
     echo "bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq > /dev/null"
     bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq > /dev/null
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    echo "hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq > /dev/null"
+    hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq > /dev/null
     else
     echo "bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --best --strata --maxins ${MAXINS} --sam ${bowtieGenomeBuild} ${bowtieReadList} --un UNMAPPED.fastq --max M_FILTERED.fastq > /dev/null"
     bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --best --strata --maxins ${MAXINS} --sam ${bowtieGenomeBuild} ${bowtieReadList} --un UNMAPPED.fastq --max M_FILTERED.fastq > /dev/null
     fi
     
     if [ "${BOWTIE}" -eq 2 ] ; then
+       mv -f UNMAPPED.1.fastq UNMAPPED_1.fastq
+       mv -f UNMAPPED.2.fastq UNMAPPED_2.fastq
+    fi
+    
+    if [ "${BOWTIE}" -eq 3 ] ; then
        mv -f UNMAPPED.1.fastq UNMAPPED_1.fastq
        mv -f UNMAPPED.2.fastq UNMAPPED_2.fastq
     fi
@@ -128,6 +138,9 @@ printNewChapterToLogFile
     if [ "${BOWTIE}" -eq 2 ] ; then
     bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_1.fastq  > singleEnd_bowtie_READ1.sam
     echo "bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_1.fastq"
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_1.fastq  > singleEnd_bowtie_READ1.sam
+    echo "hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_1.fastq"
     else
     bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --sam ${bowtieGenomeBuild} UNMAPPED_1.fastq  > singleEnd_bowtie_READ1.sam
     fi
@@ -157,6 +170,9 @@ printNewChapterToLogFile
     if [ "${BOWTIE}" -eq 2 ] ; then
     bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_2.fastq  > singleEnd_bowtie_READ2.sam
     echo "bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_2.fastq"
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_2.fastq  > singleEnd_bowtie_READ2.sam
+    echo "hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} UNMAPPED_2.fastq"
     else
     bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --sam ${bowtieGenomeBuild} UNMAPPED_2.fastq  > singleEnd_bowtie_READ2.sam
     fi
@@ -195,6 +211,9 @@ fi
     if [ "${BOWTIE}" -eq 2 ] ; then
     bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} > bowtie_out.sam
     echo "bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList}"
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} > bowtie_out.sam
+    echo "hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList}"
     else
     bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --best --strata --maxins ${MAXINS} --sam ${bowtieGenomeBuild} ${bowtieReadList}  > bowtie_out.sam
     fi
@@ -250,6 +269,9 @@ printNewChapterToLogFile
     if [ "${BOWTIE}" -eq 2 ] ; then
     bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} > bowtie_out.sam
     echo "bowtie2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList}"
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} > bowtie_out.sam
+    echo "hisat2 -p ${BOWTIE_PROCESSORS} ${otherBowtie2Parameters} ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList}"
     else
     bowtie -p ${BOWTIE_PROCESSORS} ${otherBowtie1Parameters} --chunkmb "${BOWTIEMEMORY}" ${bowtieQuals} ${mParameter} --best --strata --maxins ${MAXINS} --sam ${bowtieGenomeBuild} ${bowtieReadList} > bowtie_out.sam
     fi

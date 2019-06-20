@@ -65,6 +65,8 @@ module load bowtie/1.0.0
 module load bowtie2/2.1.0
 # Supports all bowtie2 versions
 
+module load hisat/2.0.5
+
 module load bedtools/2.17.0
 # Supports bedtools versions 2.1* . Does not support bedtools versions 2.2*
 

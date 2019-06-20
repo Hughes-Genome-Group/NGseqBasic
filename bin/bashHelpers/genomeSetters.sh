@@ -56,6 +56,23 @@ fi
 
 done  
 
+fi
+
+#------------------------------------------------
+
+if [ "${BOWTIE}" -eq 3 ]
+then
+    
+for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do
+    
+# echo ${supportedGenomes[$g]}
+
+if [ "${supportedGenomes[$g]}" == "${genomeName}" ]; then
+    bowtieGenomeBuild="${BOWTIE3[$g]}"
+fi
+
+done  
+
 fi  
 
 #------------------------------------------------

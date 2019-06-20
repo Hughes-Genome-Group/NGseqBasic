@@ -118,6 +118,18 @@ trimBowtie(){
     rm -f READ*.fastq     
     fi
 
+    elif [ "${BOWTIE}" -eq 3 ] ; then
+    
+    if [ "${SINGLE_END}" -eq 0 ] ; then
+    echo "hisat2 -p 3 ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed -k 1 --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq --al-conc MAPPED.fastq > /dev/null"
+    hisat2 -p 3 ${bowtieQuals} --no-spliced-alignment --no-discordant --no-mixed -k 1 --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un-conc UNMAPPED.fastq --al-conc MAPPED.fastq > /dev/null
+    rm -f READ*.fastq
+    else
+    echo "hisat2 -p 3 ${bowtieQuals} -k 1 --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un UNMAPPED.fastq --al MAPPED.fastq > /dev/null"
+    hisat2 -p 3 ${bowtieQuals} -k 1 --no-spliced-alignment --maxins ${MAXINS} -x ${bowtieGenomeBuild} ${bowtieReadList} --un UNMAPPED.fastq --al MAPPED.fastq > /dev/null
+    rm -f READ*.fastq     
+    fi
+
     else
     
     echo "bowtie -p 3 --chunkmb ${BOWTIEMEMORY} ${bowtieQuals} ${mParameter} --best --strata --maxins ${MAXINS} --sam ${bowtieGenomeBuild} ${bowtieReadList} --al MAPPED.fastq --un UNMAPPED.fastq --max M_FILTERED.fastq > /dev/null"
@@ -161,6 +173,25 @@ trimBowtie(){
        mv -f UNMAPPED.2.fastq UNMAPPED_2.fastq
        fi
 
+       
+    fi
+    
+    if [ "${BOWTIE}" -eq 3 ] &&  [ "${SINGLE_END}" -eq 0 ]; then
+
+       if [ -s "MAPPED.1.fastq" ] ; then 
+       mv -f MAPPED.1.fastq MAPPED_1.fastq
+       fi
+       if [ -s "MAPPED.2.fastq" ] ; then 
+       mv -f MAPPED.2.fastq MAPPED_2.fastq
+       fi
+       if [ -s "UNMAPPED.1.fastq" ] ; then        
+       mv -f UNMAPPED.1.fastq UNMAPPED_1.fastq
+       fi
+       if [ -s "UNMAPPED.2.fastq" ] ; then 
+       mv -f UNMAPPED.2.fastq UNMAPPED_2.fastq
+       fi
+
+       
     fi
     
     echo
