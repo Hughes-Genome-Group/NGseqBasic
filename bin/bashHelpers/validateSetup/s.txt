@@ -69,7 +69,7 @@ SERVERADDRESS="userweb.molbiol.ox.ac.uk"
 
 # You can delete or add stuff from the path, to match your data area design, with these parameters :
 
-REMOVEfromPUBLICFILEPATH=""
+REMOVEfromPUBLICFILEPATH="/t1-data"
 
 # For example, your disk area location is :
 # /upper/folder/public/datafile.txt
