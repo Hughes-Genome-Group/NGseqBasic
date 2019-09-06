@@ -45,15 +45,15 @@ echo
 echo "[1](bam-to-fastq) --> [1b] fastqc --> (trimming, fastqc again) --> bowtie --> bowtie_out.bam, filtered.bam (no blacklisted*, no dupl, proper pairs) --> bedgraph, bigwig --> [2](data hub)"
 echo "Data can enter as bam [1], and/or as fastq [1b]. Step [2] is optional."
 echo "Note that the generated bigwig and bedgraph files contain SINGLE INTERVAL for each properly paired READ PAIR (mimicking the original DNaseI cut fragments)"
-echo "*) Blacklisted region filtering works only for "
-for g in $( seq 0 $((${#genomesWhichHaveBlacklist[@]}-1)) ); do echo -n "${genomesWhichHaveBlacklist[$g]} "; done
+echo "*) Blacklisted region filtering works only for mm9,mm10,hg18,hg19"
 echo "at the moment"
 echo
 echo "Is to be ran in the command line like this :"
 echo "qsub -cwd -o qsub.out -e qsub.err -N MyPipeRun < ./run.sh"
 echo "Where run.sh is oneliner like : '${PipePath}/DnaseAndChip_pipe_1.sh --genomes mm9,mm10' "
 echo -n "Supported genomes : "
-for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do echo -n "${supportedGenomes[$g]} "; done
+echo "(here genomes list)"
+# for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do echo -n "${supportedGenomes[$g]} "; done
 echo "(see * note above about blacklisted region filtering)"
 echo
 echo "Run the script in an empty folder - it will generate all the files and folders it needs."

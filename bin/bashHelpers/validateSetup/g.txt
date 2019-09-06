@@ -59,6 +59,9 @@ supportedGenomes[14]="RSmm9CTCFinsRev"
 supportedGenomes[15]="RSmm9CTCFinsWT"
 supportedGenomes[16]="mm9_12LP1R2"
 supportedGenomes[17]="hg19_Vs"
+supportedGenomes[18]="mm9mlYAC"
+supportedGenomes[19]="mm9mlYAC7D"
+
 
 
 # The above genomes should have :
@@ -111,6 +114,8 @@ BOWTIE1[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_who
 BOWTIE1[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie1_indices_wt/mm9_complete"
 BOWTIE1[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/bowtie1/genome"
 BOWTIE1[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie1_indices/hg19_Vs"
+BOWTIE1[18]="/t1-data/user/hugheslab/telenius/runsAndAnalysis/martinSalvageRunProtocol_060919/customGenomes/mm9YAC_bowtie1/mm9mlYAC"
+BOWTIE1[19]="/t1-data/user/hugheslab/telenius/runsAndAnalysis/martinSalvageRunProtocol_060919/customGenomes/mm9betaDelYAC_bowtie1/mm9mlYAC7D"
 
 # The indices in the BOWTIE1 array refer to genome names in supportedGenomes array (top of page).
 
@@ -162,6 +167,8 @@ BOWTIE2[14]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/rev_who
 BOWTIE2[15]="/t1-data/user/hugheslab/telenius/GENOMES/rosaCTCFmm9_280818/wt_whole_genome/bowtie2_indices_wt/wt_complete"
 BOWTIE2[16]="NOT_SUPPORTED_needsToBeAddedToConfigFile"
 BOWTIE2[17]="/t1-data/user/bozhilov/TransVAN_Genome/Sense_R3/bowtie2_indecies/hg19_Vs"
+BOWTIE2[18]="NOT_SUPPORTED_needsToBeAddedToConfigFile"
+BOWTIE2[19]="NOT_SUPPORTED_needsToBeAddedToConfigFile"
 
 # The indices in the BOWTIE2 array refer to genome names in supportedGenomes array (top of page).
 
@@ -207,7 +214,8 @@ BOWTIE3[14]="GenomeNotYetSupported"
 BOWTIE3[15]="GenomeNotYetSupported"
 BOWTIE3[16]="GenomeNotYetSupported"
 BOWTIE3[17]="GenomeNotYetSupported"
-
+BOWTIE3[18]="GenomeNotYetSupported"
+BOWTIE3[19]="GenomeNotYetSupported"
 
 
 # #############################################################################
@@ -243,7 +251,8 @@ UCSC[14]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFins.chrom.sizes"
 UCSC[15]="${confFolder}/UCSCgenomeSizes/RSmm9CTCFwt.chrom.sizes"
 UCSC[16]="/t1-data/user/hugheslab/telenius/GENOMES/cazEDITED_12LP1_R2/mm9_12LP1R2.chrom.sizes"
 UCSC[17]="${confFolder}/UCSCgenomeSizes/hg19.chrom.sizes"
-
+UCSC[18]="/t1-data/user/hugheslab/telenius/runsAndAnalysis/martinSalvageRunProtocol_060919/customGenomes/mm9YAC/mm9mlYAC.sizes"
+UCSC[19]="/t1-data/user/hugheslab/telenius/runsAndAnalysis/martinSalvageRunProtocol_060919/customGenomes/mm9betaDelYAC/mm9mlYAC7D.sizes"
 
 # The indices in the UCSC array refer to genome names in supportedGenomes array (top of page).
 
