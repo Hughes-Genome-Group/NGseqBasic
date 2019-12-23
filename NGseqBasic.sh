@@ -126,6 +126,9 @@ echo ""
 
 runHubbing(){
 
+# For custom genomes : they have different visualisation genome name ..
+setUCSCgenomeName
+
 #-------Hubbing-starts--------------------------------------------------------------
 
 if [ "${HUBBING}" -eq 1 ] ; then
@@ -223,16 +226,11 @@ if [ "${HUBBING}" -eq 1 ] ; then
 
     fi
     
-    # As the custom genomes need to still be assigned to a "real" genome..
-    TEMPORARYgenome="${genomeName}"
-    if [ "${TEMPORARYgenome}" == "mm10balb" ]; then
-        TEMPORARYgenome="mm10"
-    fi
 
-    printThis="${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE}" -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic "${SYMBOLIC}" -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN} "
+    printThis="${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE}" -o "${QSUBOUTFILE}" -g "${genomeName}" -u "${ucscBuildName}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic "${SYMBOLIC}" -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN} "
     printToLogFile
 
-    ${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE} " -o "${QSUBOUTFILE}" -g "${TEMPORARYgenome}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic ${SYMBOLIC} -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN} 
+    ${PipePath}/dataHubGenerator.sh -e "${QSUBERRFILE} " -o "${QSUBOUTFILE}" -g "${genomeName}" -u "${ucscBuildName}" -n "${MagicNumber}" -w ${WINDOW} -p "${PipePath}" --rerun "${hubIsRerun}" --onlyhub "${hubOnlyHub}" --ploidyTrack "${hubIsPloidyFiltered}" --singleEnd "${SINGLE_END}" --symbolic ${SYMBOLIC} -W ${WINDOWTRACK} --orangeblue ${ORANGEBLUE} --redgreen ${REDGREEN} 
     rm -f versionInfoHTML.txt
     
     rm -f dnase_pipe_1_param.txt
@@ -596,6 +594,7 @@ confFolder="${PipeTopPath}/conf"
 # Calling in the CONFIGURATION script and its default setup :
 
 supportedGenomes=()
+ucscGenomeNames=()
 BOWTIE1=()
 BOWTIE2=()
 BOWTIE3=()

@@ -132,5 +132,30 @@ echo
 
 }
 
+setUCSCgenomeName(){
+    
+ucscBuildName="UNDETERMINED"
+    
+for g in $( seq 0 $((${#supportedGenomes[@]}-1)) ); do
+    
+# echo ${supportedGenomes[$g]}
+
+if [ "${supportedGenomes[$g]}" == "${genomeName}" ]; then
+    ucscBuildName="${ucscGenomeNames[$g]}"
+fi
+
+done 
+    
+if [ "${ucscBuildName}" == "UNDETERMINED" ]; then 
+  echo "Genome build " ${genomeName} " is not supported --- aborting !"  >&2
+  exit 1 
+fi
+
+echo
+echo "Genome ${genomeName} . Set UCSC genome name : ${ucscBuildName}"
+echo
+
+}
+
 
 

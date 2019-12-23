@@ -356,6 +356,7 @@ echo
 
 
 genomeName=""
+UCSCvisualisationGenomeName=""
 magicNumber="RUN"
 windowSize=3
 pipePath="/t1-home/molhaem2/telenius/Jelena_DNase_pipe"
@@ -369,7 +370,7 @@ ERRFILENAME="qsub.err"
 ORANGEBLUE="0"
 REDGREEN="0"
 
-OPTS=`getopt -o o:,e:,g:,n:,w:,p:,W: --long rerun:,ploidyTrack:,onlyhub:,singleEnd:,symbolic:,orangeblue:,redgreen: -- "$@"`
+OPTS=`getopt -o o:,e:,g:,u:,n:,w:,p:,W: --long rerun:,ploidyTrack:,onlyhub:,singleEnd:,symbolic:,orangeblue:,redgreen: -- "$@"`
 if [ $? != 0 ]
 then
     exit 1
@@ -380,6 +381,7 @@ eval set -- "$OPTS"
 while true ; do
     case "$1" in
         -g) genomeName=$2 ; shift 2;;
+        -u) UCSCvisualisationGenomeName=$2 ; shift 2;;
         -e) ERRFILENAME=$2 ; shift 2;;
         -o) OUTFILENAME=$2 ; shift 2;;
         -n) magicNumber=$2 ; shift 2;;
@@ -406,6 +408,7 @@ echo "Starting run with parameters :"
 echo "OUTFILENAME ${OUTFILENAME}"
 echo "ERRFILENAME ${ERRFILENAME}"
 echo "genomeName ${genomeName}"
+echo "UCSCvisualisationGenomeName ${UCSCvisualisationGenomeName}"
 echo "magicNumber ${magicNumber}"
 echo "windowSize ${windowSize}"
 echo "pipePath ${pipePath}"
@@ -603,7 +606,7 @@ fi
     if [ ! -d "${hubFolderHtsLongPath}/${genomeName}" ]; then
       
       mkdir "${hubFolderHtsLongPath}"/${genomeName}
-      echo "genome ${genomeName}" > TEMP_genomes.txt
+      echo "genome ${UCSCvisualisationGenomeName}" > TEMP_genomes.txt
       echo "trackDb ${genomeName}/tracks.txt" >> TEMP_genomes.txt
       echo "" >> TEMP_genomes.txt
       cat TEMP_genomes.txt >> "${hubFolderHtsLongPath}"/genomes.txt
